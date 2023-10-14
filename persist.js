@@ -1,33 +1,27 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors()); // Enable CORS for all routes
 
 let features = [];
 
 app.post('/api/add-feature', (req, res) => {
     const newFeature = req.body.feature;
-    features.push({ name: newFeature, votes: 0 });
-    saveFeatures();
-    res.json({ message: 'Feature added successfully.' });
+    if (!newFeature || newFeature.trim() === '') {
+        res.status(400).json({ error: 'Invalid feature.' });
+    } else {
+        features.push({ name: newFeature, votes: 0 });
+        saveFeatures();
+        res.json({ message: 'Feature added successfully.' });
+    }
 });
 
 app.get('/api/features', (req, res) => {
     res.json(features);
-});
-
-app.post('/api/vote', (req, res) => {
-    const featureName = req.body.feature;
-    const feature = features.find(f => f.name === featureName);
-    if (feature) {
-        feature.votes++;
-        saveFeatures();
-        res.json({ message: 'Vote counted successfully.' });
-    } else {
-        res.status(404).json({ error: 'Feature not found.' });
-    }
 });
 
 function saveFeatures() {
