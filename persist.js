@@ -5,18 +5,40 @@ const fs = require('fs');
 const app = express();
 app.use(bodyParser.json());
 
-app.post('/api/data', (req, res) => {
-    const newData = req.body.data;
-    // Write data to a JSON file
-    fs.writeFileSync('data.json', JSON.stringify(newData));
-    res.json({ message: 'Data saved successfully.' });
+let features = []; // Array to store features and their vote counts
+
+app.post('/api/add-feature', (req, res) => {
+    const newFeature = req.body.feature;
+    features.push({ name: newFeature, votes: 0 });
+    saveFeatures();
+    res.json({ message: 'Feature added successfully.' });
 });
 
-app.get('/api/data', (req, res) => {
-    // Read data from the JSON file
-    const data = JSON.parse(fs.readFileSync('data.json'));
-    res.json(data);
+app.get('/api/features', (req, res) => {
+    res.json(features);
 });
+
+app.post('/api/vote', (req, res) => {
+    const featureName = req.body.feature;
+    const feature = features.find(f => f.name === featureName);
+    if (feature) {
+        feature.votes++;
+        saveFeatures();
+        res.json({ message: 'Vote counted successfully.' });
+    } else {
+        res.status(404).json({ error: 'Feature not found.' });
+    }
+});
+
+function saveFeatures() {
+    // Write features data to a JSON file
+    fs.writeFileSync('features.json', JSON.stringify(features));
+}
+
+// Load features from the JSON file on server start
+if (fs.existsSync('features.json')) {
+    features = JSON.parse(fs.readFileSync('features.json'));
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
