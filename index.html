@@ -1,27 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Voting App</title>
+    <title>Feature Voting App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            width: 800px;
+            overflow: hidden;
+        }
+
+        .voting-section {
+            flex: 1;
+            padding: 40px;
+            border-right: 1px solid #ccc;
+        }
+
+        .feature-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .input-field {
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .feature-item {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
+
 <body>
+    <h1 style="color: #4CAF50; text-align: center;">Feature Voting App</h1>
     <div class="container">
-        <div class="features-list">
-            <h2>Features List</h2>
-            <ul id="feature-list"></ul>
+        <div class="voting-section">
+            <div id="feature-list"></div>
+            <button id="reset-votes-button" class="button" style="margin-top: 20px; margin-right: 10px;">Reset Votes</button>
+            <button id="reset-features-button" class="button" style="margin-top: 20px;">Reset Features</button>
         </div>
-        <div class="add-feature">
-            <h2>Add a New Feature</h2>
-            <input type="text" id="new-feature" placeholder="Enter a new feature">
-            <button id="add-button">Add Feature</button>
+        <div class="feature-section">
+            <h2 style="color: #4CAF50;">Add New Feature</h2>
+            <div>
+                <input type="text" id="new-feature" class="input-field" placeholder="Enter a new feature">
+                <button id="add-button" class="button">Add Feature</button>
+            </div>
         </div>
-        <div class="reset-button">
-    <button id="reset-button">Reset All Data</button>
-</div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
