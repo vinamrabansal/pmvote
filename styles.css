@@ -1,80 +1,84 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 .container {
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px;
 }
 
-.section {
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 10px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-ul {
+.features {
     list-style: none;
     padding: 0;
 }
 
-li {
+.feature-item {
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-li:hover {
-    transform: scale(1.05);
+.feature-item:hover {
+    background-color: #e2e2e2;
 }
 
-#features-added div {
-    background-color: #4caf50;
+.vote-count {
+    display: none;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #777;
+}
+
+.feature-item.voted .vote-count {
+    display: block;
+}
+
+.add-feature-section {
+    width: 300px;
+    padding: 20px;
+    background-color: #f7faff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reset-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#reset-votes-button,
+#reset-features-button {
+    background-color: #ff6666;
     color: white;
     padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    margin-bottom: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+#reset-votes-button:hover,
+#reset-features-button:hover {
+    background-color: #ff4d4d;
+}
+
+.chart-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#chart-container {
+    width: 300px;
+    height: 300px;
 }
