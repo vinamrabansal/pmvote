@@ -5,7 +5,7 @@ const fs = require('fs');
 const app = express();
 app.use(bodyParser.json());
 
-let features = []; // Array to store features and their vote counts
+let features = [];
 
 app.post('/api/add-feature', (req, res) => {
     const newFeature = req.body.feature;
@@ -31,11 +31,9 @@ app.post('/api/vote', (req, res) => {
 });
 
 function saveFeatures() {
-    // Write features data to a JSON file
     fs.writeFileSync('features.json', JSON.stringify(features));
 }
 
-// Load features from the JSON file on server start
 if (fs.existsSync('features.json')) {
     features = JSON.parse(fs.readFileSync('features.json'));
 }
